@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Flex Practice1.0</title>
+</head>
+
+<style>
+    body{   
+        /* 给网页设置一个body  */
+        margin: 0;   /*外边距*/
+        height: 100vh;  /*浏览器view height, 浏览器视图高度 */
+        background-color: #eee;  /*灰色的边框*/
+
+
+
+    }
+    
+
+    /* *{  通用选择器
+        border: 1px solid black;  给所有元素加一个边框，可以看到透明元素的布局
+
+
+    } */
+
+    .flex{   /*写一个flex class 给body加上去*/
+        display: flex;
+
+
+    }
+    .baiSe{   /*写一个白色背景  的  class*/
+        background-color: white;
+
+    }
+
+    .shadow{
+        /*为了好看一点，给白色盒子加一点阴影*/
+        box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px,rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
+    }
+
+    .flex1{
+        /*主区域要占满了侧边栏的所有地方,给主区域写一个class*/
+        flex : 1;
+
+    }
+
+    .column{
+        /*写一个竖方向的class*/
+        flex-direction: column;
+
+    }
+    .mg8{
+        /*为了好看一点，写  边距margin  样式*/
+        margin: 8px;
+
+    }
+
+    .mgr8{
+        /*right margin*/
+        margin-right: 8px;
+    }
+
+    .mgt8{
+        /*top margin*/
+        margin-top: 8px;
+    }
+    
+    .daoHang{
+        padding: 10px 20px;
+        border-bottom: 1px solid rgb(190, 190, 190);
+        font-size: 14px;
+        color: #666
+
+    }
+
+    /*手机端设置，当屏幕小于600px时要改变的css*/
+    @media (max-width:600px){
+        /*侧边栏消失*/
+        .ceBian{
+            display: none;
+        }
+
+        /*内容栏 改成竖向*/
+        .neiRong{
+            flex-direction: column;
+        }
+        
+        /*数据栏*/
+        .shuJu{
+            flex-direction: column;
+        }
+        
+        /*右边区域加一个左外边距对其*/
+        .rightSide{
+            margin-left: 8px;
+        }
+
+        /*数据块的占比和边距也改*/
+        .shuJuBox{
+            margin: 0 0 8px;
+            flex: auto;
+        }
+
+    }
+</style>
+
+<body class="flex">
+
+    <!-- 侧边栏 给左边侧边栏设置一个宽度-->
+    <!--因为overflow，滚动时头部栏会在地下，所以加一个z坐标固定-->
+    <div style="width : 200px; z-index: 2" class = "ceBian baiSe shadow">
+        <!--头像栏-->
+        <!--border-bottom: 1px 边框区分-->
+        <div style="padding: 10px; align-items: center; justify-content: center;border-bottom: 1px solid #999;" class="flex">
+            <img src="https://s21.ax1x.com/2024/12/08/pA7hult.jpg" alt="FiveZhang.jpg" width=40px hidth=40px border="0" /></a>
+            <!--margin-left: 10px，名字离头像远一点-->
+            <div style="margin-left: 10px;">FIVE</div>
+        </div>        
+
+        <!--导航栏-->
+        <!--导航栏占剩余空间-->
+        <div class="flex1">
+            <div class="daoHang">导航</div>
+            <div class="daoHang">导航</div>
+            <div class="daoHang">导航</div>
+            <div class="daoHang">导航</div>
+            <div class="daoHang">导航</div>
+        </div>
+    </div>
+
+
+    <!-- 主区域 -->   <!--把flex1, flex, column class附加上去--> <!--上下竖向结构,里面在创建个头部栏-->
+    <div class = "flex1 flex column">
+        <!--再创一个头部栏，高度60px-->
+        <!--因为overflow，滚动时头部栏会在地下，所以加一个z坐标固定-->
+        <div style="height: 60px; z-index: 1"  class = "baiSe shadow"></div>
+        <!--内容区-->  <!--flex1占据剩余部分, 分为横向的左部分和右部分-->  <!--左右比例3:1-->  <!--左右两区的下级盒子是上下竖向结构-->
+        <!--overflow:auto, 内容区自动滚动-->
+        <div style="overflow: auto;" class = "neiRong flex1 flex">
+            <!--Left Part-->  <!--左边一个数据区，一个列表区-->
+            <div style="flex:3" class="flex column mg8">
+                <!--数据区-->  <!--横向，4个块-->
+                <div class="flex shuJu">
+                    <!--四个数据块-->
+                    <div style="height : 100px" class="shuJuBox flex1 baiSe mgr8 shadow"></div>
+                    <div style="height : 100px" class="shuJuBox flex1 baiSe mgr8 shadow"></div>
+                    <div style="height : 100px" class="shuJuBox flex1 baiSe mgr8 shadow"></div>
+                    <div style="height : 100px" class="shuJuBox flex1 baiSe shadow"></div>
+
+                </div>
+                <!--列表区-->  <!--竖向排列-->
+                <div class="flex column">
+                    <!--列表项-->
+                    <div style="height: 160px;" class="baiSe mgt8 shadow"></div>
+                    <div style="height: 160px;" class="baiSe mgt8 shadow"></div>
+                    <div style="height: 160px;" class="baiSe mgt8 shadow"></div>
+                    <div style="height: 160px;" class="baiSe mgt8 shadow"></div>
+                    <div style="height: 160px;" class="baiSe mgt8 shadow"></div>
+                    <div style="height: 160px;" class="baiSe mgt8 shadow"></div>
+                    
+
+                </div>
+            </div>
+            <!--Right Part-->  <!--右边一个提示区，一个消息区-->
+            <div style="flex : 1" class="rightSide flex column mgr8 mgt8">
+                <!--提示区--> <!--先给一个150px的高度,baiSe的class-->
+                <div style="height: 150px;" class="baiSe shadow"></div>
+                <!--消息区-->
+                <div style="height: 300px;" class="baiSe mgt8 shadow"></div>
+            </div>
+        </div>
+
+    </div>
+    <!-- 侧边栏 -->
+    <div></div>
+</body>
+</html>
